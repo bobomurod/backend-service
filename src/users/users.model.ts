@@ -40,6 +40,3 @@ export class User extends Model<User, UserCreationAttrs> {
   })
   banReason: string;
 }
-
-{
-}
