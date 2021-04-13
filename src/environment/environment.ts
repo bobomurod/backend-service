@@ -5,9 +5,8 @@ export const environment = {
     USER: process.env.DATABASE_USER || '',
     PASSWORD: process.env.DATABASE_PASSWORD || '',
     HOST: process.env.DATABASE_HOST || '',
-    PORT: process.env.DATABASE_PORT || '',
+    PORT: process.env.DATABASE_PORT || 5544,
     NAME: process.env.DATABASE_NAME || '',
-    OPTION: process.env.DATABASE_OPTION || ''
   },
   authenticationConfig: {
     SECRET: process.env.SECRET || 'secret',
