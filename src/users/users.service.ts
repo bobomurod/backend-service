@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { User } from './users.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
-import { GetUserDto } from "./dto/get-user.dto";
+import { GetUserDto } from './dto/get-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { GetUserByIdDto } from "./dto/get-user-by-id.dto";
 
 @Injectable()
 export class UsersService {
@@ -19,10 +21,20 @@ export class UsersService {
   }
 
   async getUser(dto: GetUserDto) {
-    return {}
+    const user = await this.userRepository.findOne({ where: {id: dto.id , email: dto.email } });
+    return user;
   }
 
-  async updateUser() {
-    return {}
+  async getUserById(dto: GetUserByIdDto) {
+    const user = await this.userRepository.findByPk(dto.id);
+    return user;
+  }
+
+  async updateUser(dto: UpdateUserDto) {
+    const updatedUser = this.userRepository.update(
+      { email: dto.email },
+      { where: { id: dto.id } },
+    );
+    return updatedUser;
   }
 }
